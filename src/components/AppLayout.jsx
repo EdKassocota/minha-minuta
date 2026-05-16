@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Outlet, Link, useLocation, useNavigate } from 'react-router-dom';
-import { FileText, Grid, FilePlus, BookTemplate, User, Settings } from 'lucide-react';
+import { FileText, Grid, FilePlus, BookTemplate, User, Settings, Menu, X } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 import { useAuth } from '../lib/AuthContext';
 
@@ -9,6 +9,7 @@ export default function AppLayout() {
   const navigate = useNavigate();
   const { user } = useAuth();
   const [profile, setProfile] = useState(null);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   useEffect(() => {
     if (user) {
@@ -20,6 +21,11 @@ export default function AppLayout() {
         .then(({ data }) => setProfile(data));
     }
   }, [user]);
+
+  // Close sidebar on route change in mobile
+  useEffect(() => {
+    setIsSidebarOpen(false);
+  }, [location.pathname]);
 
   const navItems = [
     { to: '/app', icon: <Grid size={16} />, label: 'Dashboard' },
@@ -39,7 +45,16 @@ export default function AppLayout() {
 
   return (
     <div className="app-container">
-      <div className="sidebar">
+      {/* Mobile Sidebar Overlay */}
+      {isSidebarOpen && (
+        <div 
+          className="mobile-only" 
+          style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, backgroundColor: 'rgba(0,0,0,0.5)', zIndex: 90 }}
+          onClick={() => setIsSidebarOpen(false)}
+        />
+      )}
+
+      <div className={`sidebar ${isSidebarOpen ? 'mobile-open' : ''}`}>
         <div className="topbar-placeholder" style={{ height: '48px', backgroundColor: 'var(--color-primary)' }}></div>
         
         <div style={{ padding: '24px 0', display: 'flex', flexDirection: 'column', gap: '4px' }}>
@@ -82,12 +97,19 @@ export default function AppLayout() {
 
       <div className="content-area">
         <div className="topbar" style={{ position: 'fixed', top: 0, left: 0, right: 0, zIndex: 50 }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '12px', width: '220px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+            <button 
+              className="btn btn-ghost mobile-only" 
+              style={{ padding: '4px', color: 'white', display: 'none' }} 
+              onClick={() => setIsSidebarOpen(true)}
+            >
+              <Menu size={20} />
+            </button>
             <img src="/logo.png" alt="Minha Minuta" style={{ height: '24px', filter: 'brightness(0) invert(1)' }} />
           </div>
           
           <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <div className="mobile-hide" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
               <span style={{ fontSize: '13px', fontWeight: 500 }}>
                 {profile?.full_name || user?.email || 'A carregar...'}
               </span>
@@ -95,8 +117,8 @@ export default function AppLayout() {
                 {(profile?.plan || 'ESSENCIAL').toUpperCase()}
               </span>
             </div>
-            <Link to="/app/conta" style={{ color: 'white', textDecoration: 'none', fontSize: '13px' }}>Perfil</Link>
-            <button onClick={handleLogout} className="btn-ghost" style={{ color: 'white', fontSize: '13px', border: 'none', cursor: 'pointer' }}>Sair</button>
+            <Link to="/app/conta" className="mobile-hide" style={{ color: 'white', textDecoration: 'none', fontSize: '13px' }}>Perfil</Link>
+            <button onClick={handleLogout} className="btn-ghost" style={{ color: 'white', fontSize: '13px', border: 'none', cursor: 'pointer', padding: 0 }}>Sair</button>
           </div>
         </div>
         
