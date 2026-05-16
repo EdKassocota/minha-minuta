@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Check } from 'lucide-react';
 
 export default function LandingPage() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -9,7 +9,7 @@ export default function LandingPage() {
     <div style={{ backgroundColor: 'var(--color-bg-global)', minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
       {/* Header Fixo */}
       <header style={{ 
-        height: '64px', 
+        height: '72px', 
         backgroundColor: 'var(--color-bg-surface)', 
         borderBottom: '1px solid var(--color-border)',
         display: 'flex',
@@ -21,7 +21,7 @@ export default function LandingPage() {
         zIndex: 100
       }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-          <img src="/logo.png" alt="Minha Minuta" style={{ height: '32px' }} />
+          <img src="/logo.png" alt="Minha Minuta" style={{ height: '48px' }} />
         </div>
         
         {/* Menu Desktop */}
@@ -43,7 +43,7 @@ export default function LandingPage() {
 
       {/* Menu Aberto (Mobile) */}
       {isMenuOpen && (
-        <div style={{ position: 'fixed', top: '64px', left: 0, right: 0, bottom: 0, backgroundColor: 'var(--color-bg-surface)', zIndex: 99, padding: '24px', display: 'flex', flexDirection: 'column', gap: '24px' }}>
+        <div style={{ position: 'fixed', top: '72px', left: 0, right: 0, bottom: 0, backgroundColor: 'var(--color-bg-surface)', zIndex: 99, padding: '24px', display: 'flex', flexDirection: 'column', gap: '24px' }}>
           <a href="#funcionalidades" style={{ color: 'var(--color-text-main)', fontSize: '18px', fontWeight: 500 }} onClick={() => setIsMenuOpen(false)}>Funcionalidades</a>
           <a href="#precos" style={{ color: 'var(--color-text-main)', fontSize: '18px', fontWeight: 500 }} onClick={() => setIsMenuOpen(false)}>Preços</a>
           <Link to="/login" style={{ color: 'var(--color-text-main)', fontSize: '18px', fontWeight: 500 }} onClick={() => setIsMenuOpen(false)}>Entrar na conta</Link>
@@ -136,48 +136,52 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Preços */}
-      <section id="precos" className="mobile-padding" style={{ padding: '72px 24px', backgroundColor: 'var(--color-bg-surface)' }}>
-        <div style={{ maxWidth: '900px', margin: '0 auto', width: '100%' }}>
-          <h2 className="text-display mobile-text-center" style={{ textAlign: 'center', marginBottom: '48px' }}>Planos simples</h2>
+      {/* Preços (Destaque Adicionado) */}
+      <section id="precos" className="mobile-padding" style={{ padding: '80px 24px', backgroundColor: 'var(--color-bg-surface)' }}>
+        <div style={{ maxWidth: '1100px', margin: '0 auto', width: '100%' }}>
+          <h2 className="text-display mobile-text-center" style={{ textAlign: 'center', marginBottom: '16px' }}>Planos simples, sem surpresas</h2>
+          <p className="text-body mobile-text-center" style={{ textAlign: 'center', color: 'var(--color-text-secondary)', marginBottom: '48px' }}>Escolha o plano ideal para as necessidades da sua equipa e do seu escritório.</p>
           
-          <div className="table-container" style={{ overflowX: 'auto' }}>
-            <table style={{ minWidth: '600px' }}>
-              <thead>
-                <tr>
-                  <th style={{ width: '40%' }}>Funcionalidades</th>
-                  <th style={{ width: '20%' }}>Essencial<br/><span style={{ fontSize: '11px', fontWeight: 400 }}>Grátis</span></th>
-                  <th style={{ width: '20%', borderTop: '2px solid var(--color-primary)', backgroundColor: 'var(--color-bg-active)' }}>Profissional<br/><span style={{ fontSize: '11px', fontWeight: 400 }}>15.000 AOA /mês</span></th>
-                  <th style={{ width: '20%' }}>Escritório<br/><span style={{ fontSize: '11px', fontWeight: 400 }}>35.000 AOA /mês</span></th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td className="main-cell">Número de minutas</td>
-                  <td>Até 3</td>
-                  <td style={{ backgroundColor: 'var(--color-bg-active)' }}>Ilimitado</td>
-                  <td>Ilimitado</td>
-                </tr>
-                <tr>
-                  <td className="main-cell">Documentos gerados</td>
-                  <td>10 / mês</td>
-                  <td style={{ backgroundColor: 'var(--color-bg-active)' }}>Ilimitado</td>
-                  <td>Ilimitado</td>
-                </tr>
-                <tr>
-                  <td className="main-cell">Utilizadores</td>
-                  <td>1</td>
-                  <td style={{ backgroundColor: 'var(--color-bg-active)' }}>1</td>
-                  <td>Até 5</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td><Link to="/login" className="btn btn-secondary" style={{ width: '100%' }}>Começar</Link></td>
-                  <td style={{ backgroundColor: 'var(--color-bg-active)' }}><Link to="/login" className="btn btn-primary" style={{ width: '100%' }}>Subscrever</Link></td>
-                  <td><Link to="/login" className="btn btn-secondary" style={{ width: '100%' }}>Contactar</Link></td>
-                </tr>
-              </tbody>
-            </table>
+          <div className="mobile-col" style={{ display: 'flex', gap: '24px', justifyContent: 'center', alignItems: 'center' }}>
+            {/* Card 1 */}
+            <div className="panel" style={{ flex: 1, padding: '40px 32px', display: 'flex', flexDirection: 'column', height: '100%', minHeight: '420px', width: '100%' }}>
+              <h3 className="text-subtitle" style={{ color: 'var(--color-text-secondary)', marginBottom: '8px' }}>Essencial</h3>
+              <div style={{ fontSize: '36px', fontWeight: 800, marginBottom: '24px' }}>Grátis</div>
+              <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 32px 0', color: 'var(--color-text-main)', flexGrow: 1, display: 'flex', flexDirection: 'column', gap: '16px', fontSize: '15px' }}>
+                <li style={{ display: 'flex', alignItems: 'center', gap: '12px' }}><Check size={20} color="var(--color-primary)" /> Até 3 minutas</li>
+                <li style={{ display: 'flex', alignItems: 'center', gap: '12px' }}><Check size={20} color="var(--color-primary)" /> 10 Documentos / mês</li>
+                <li style={{ display: 'flex', alignItems: 'center', gap: '12px' }}><Check size={20} color="var(--color-primary)" /> 1 Utilizador</li>
+                <li style={{ display: 'flex', alignItems: 'center', gap: '12px', color: 'var(--color-text-placeholder)' }}><Check size={20} color="currentColor" /> Marca d'água no PDF</li>
+              </ul>
+              <Link to="/login" className="btn btn-secondary" style={{ width: '100%', marginTop: 'auto', padding: '12px' }}>Começar agora</Link>
+            </div>
+
+            {/* Card 2 - DESTAQUE */}
+            <div className="panel" style={{ flex: 1.1, padding: '48px 32px', display: 'flex', flexDirection: 'column', height: '100%', minHeight: '460px', width: '100%', border: '2px solid var(--color-primary)', boxShadow: '0 20px 40px rgba(52,100,154,0.15)', transform: 'scale(1.03)', zIndex: 10, position: 'relative' }}>
+              <div style={{ position: 'absolute', top: '-14px', left: '50%', transform: 'translateX(-50%)', backgroundColor: 'var(--color-primary)', color: 'white', padding: '6px 20px', borderRadius: '100px', fontSize: '12px', fontWeight: 600, letterSpacing: '1px' }}>MAIS POPULAR</div>
+              <h3 className="text-subtitle" style={{ color: 'var(--color-primary)', marginBottom: '8px' }}>Profissional</h3>
+              <div style={{ fontSize: '36px', fontWeight: 800, marginBottom: '24px' }}>15.000 AOA<span style={{ fontSize: '14px', color: 'var(--color-text-secondary)', fontWeight: 400 }}> / mês</span></div>
+              <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 32px 0', color: 'var(--color-text-main)', flexGrow: 1, display: 'flex', flexDirection: 'column', gap: '16px', fontSize: '15px' }}>
+                <li style={{ display: 'flex', alignItems: 'center', gap: '12px' }}><Check size={20} color="var(--color-primary)" /> Minutas Ilimitadas</li>
+                <li style={{ display: 'flex', alignItems: 'center', gap: '12px' }}><Check size={20} color="var(--color-primary)" /> Documentos Ilimitados</li>
+                <li style={{ display: 'flex', alignItems: 'center', gap: '12px' }}><Check size={20} color="var(--color-primary)" /> 1 Utilizador</li>
+                <li style={{ display: 'flex', alignItems: 'center', gap: '12px' }}><Check size={20} color="var(--color-primary)" /> Sem Marca d'água</li>
+              </ul>
+              <Link to="/login" className="btn btn-primary" style={{ width: '100%', marginTop: 'auto', padding: '12px' }}>Subscrever Plano</Link>
+            </div>
+
+            {/* Card 3 */}
+            <div className="panel" style={{ flex: 1, padding: '40px 32px', display: 'flex', flexDirection: 'column', height: '100%', minHeight: '420px', width: '100%' }}>
+              <h3 className="text-subtitle" style={{ color: 'var(--color-text-secondary)', marginBottom: '8px' }}>Escritório</h3>
+              <div style={{ fontSize: '36px', fontWeight: 800, marginBottom: '24px' }}>35.000 AOA<span style={{ fontSize: '14px', color: 'var(--color-text-secondary)', fontWeight: 400 }}> / mês</span></div>
+              <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 32px 0', color: 'var(--color-text-main)', flexGrow: 1, display: 'flex', flexDirection: 'column', gap: '16px', fontSize: '15px' }}>
+                <li style={{ display: 'flex', alignItems: 'center', gap: '12px' }}><Check size={20} color="var(--color-primary)" /> Tudo do Profissional</li>
+                <li style={{ display: 'flex', alignItems: 'center', gap: '12px' }}><Check size={20} color="var(--color-primary)" /> Até 5 Utilizadores</li>
+                <li style={{ display: 'flex', alignItems: 'center', gap: '12px' }}><Check size={20} color="var(--color-primary)" /> Gestão de Equipa</li>
+                <li style={{ display: 'flex', alignItems: 'center', gap: '12px' }}><Check size={20} color="var(--color-primary)" /> Suporte Prioritário</li>
+              </ul>
+              <Link to="/login" className="btn btn-secondary" style={{ width: '100%', marginTop: 'auto', padding: '12px' }}>Contactar vendas</Link>
+            </div>
           </div>
         </div>
       </section>

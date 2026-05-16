@@ -59,7 +59,7 @@ export default function LoginPage() {
     <div style={{ minHeight: '100vh', backgroundColor: 'var(--color-bg-global)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '24px' }}>
       <div className="panel" style={{ width: '100%', maxWidth: '420px', padding: '48px 32px' }}>
         <div style={{ textAlign: 'center', marginBottom: '32px' }}>
-          <img src="/logo.png" alt="Minha Minuta" style={{ height: '32px', marginBottom: '24px' }} />
+          <img src="/logo.png" alt="Minha Minuta" style={{ height: '48px', marginBottom: '24px' }} />
           <h1 className="text-title" style={{ fontSize: '17px', fontWeight: 600 }}>
             {isRegister ? 'Criar nova conta' : 'Entrar na sua conta'}
           </h1>

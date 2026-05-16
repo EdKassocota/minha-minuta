@@ -96,7 +96,7 @@ export default function AppLayout() {
       </div>
 
       <div className="content-area">
-        <div className="topbar" style={{ position: 'fixed', top: 0, left: 0, right: 0, zIndex: 50 }}>
+        <div className="topbar" style={{ position: 'fixed', top: 0, left: 0, right: 0, zIndex: 50, height: '64px' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
             <button 
               className="btn btn-ghost mobile-only" 
@@ -105,7 +105,7 @@ export default function AppLayout() {
             >
               <Menu size={20} />
             </button>
-            <img src="/logo.png" alt="Minha Minuta" style={{ height: '24px', filter: 'brightness(0) invert(1)' }} />
+            <img src="/logo.png" alt="Minha Minuta" style={{ height: '32px', filter: 'brightness(0) invert(1)' }} />
           </div>
           
           <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
@@ -122,7 +122,7 @@ export default function AppLayout() {
           </div>
         </div>
         
-        <div style={{ marginTop: '48px', flexGrow: 1 }}>
+        <div style={{ marginTop: '64px', flexGrow: 1 }}>
           <Outlet />
         </div>
       </div>
