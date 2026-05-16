@@ -102,7 +102,7 @@ export default function Dashboard() {
       ) : (
         <>
           {/* Métricas */}
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '16px', marginBottom: '32px' }}>
+          <div className="metrics-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '16px', marginBottom: '32px' }}>
             <div className="panel" style={{ padding: '24px' }}>
               <div style={{ fontSize: '28px', fontWeight: 700, color: 'var(--color-text-main)', marginBottom: '4px' }}>{metrics.minutasCount}</div>
               <div className="text-label" style={{ color: 'var(--color-text-secondary)' }}>Minutas criadas</div>
@@ -121,9 +121,9 @@ export default function Dashboard() {
             </div>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: '3fr 2fr', gap: '32px' }}>
+          <div className="mobile-grid-1" style={{ display: 'grid', gridTemplateColumns: '3fr 2fr', gap: '32px' }}>
             {/* Minutas Recentes */}
-            <div>
+            <div style={{ maxWidth: '100vw' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
                 <h2 className="text-subtitle">Minutas Recentes</h2>
               </div>

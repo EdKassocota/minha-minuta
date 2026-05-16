@@ -182,7 +182,7 @@ export default function AdminDashboard() {
         </div>
       </div>
 
-      <div style={{ display: 'flex', borderBottom: '1px solid var(--color-border)', marginBottom: '32px' }}>
+      <div className="mobile-hide" style={{ display: 'flex', borderBottom: '1px solid var(--color-border)', marginBottom: '32px' }}>
         {['Utilizadores', 'Templates Globais', 'Métricas do Sistema'].map(t => (
           <button 
             key={t}
@@ -199,6 +199,20 @@ export default function AdminDashboard() {
             {t}
           </button>
         ))}
+      </div>
+
+      {/* Select Box para tabs no mobile */}
+      <div className="mobile-only" style={{ marginBottom: '24px' }}>
+        <select 
+          className="form-input" 
+          value={tab} 
+          onChange={(e) => setTab(e.target.value)}
+          style={{ height: '44px', fontWeight: 600 }}
+        >
+          {['Utilizadores', 'Templates Globais', 'Métricas do Sistema'].map(t => (
+            <option key={t} value={t}>{t}</option>
+          ))}
+        </select>
       </div>
 
       {tab === 'Utilizadores' && (
@@ -353,7 +367,7 @@ export default function AdminDashboard() {
       )}
 
       {tab === 'Métricas do Sistema' && (
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px' }}>
+        <div className="mobile-grid-1" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px' }}>
           <div className="panel">
             <h3 className="text-subtitle" style={{ marginBottom: '8px' }}>Total de Utilizadores</h3>
             <div style={{ fontSize: '36px', fontWeight: 'bold', color: 'var(--color-primary)' }}>{users.length}</div>

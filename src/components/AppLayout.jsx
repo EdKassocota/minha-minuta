@@ -100,7 +100,7 @@ export default function AppLayout() {
           <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
             <button 
               className="btn btn-ghost mobile-only" 
-              style={{ padding: '4px', color: 'white', display: 'none' }} 
+              style={{ padding: '4px', color: 'white' }} 
               onClick={() => setIsSidebarOpen(true)}
             >
               <Menu size={20} />
