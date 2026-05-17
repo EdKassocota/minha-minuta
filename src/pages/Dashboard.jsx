@@ -165,7 +165,7 @@ export default function Dashboard() {
               
               {minutas.length > 0 && (
                 <div style={{ marginTop: '12px' }}>
-                  <Link to="/app/templates" className="btn btn-ghost" style={{ fontSize: '13px', color: 'var(--color-text-secondary)' }}>Ver todas as minutas →</Link>
+                  <Link to="/app/templates?tab=user" className="btn btn-ghost" style={{ fontSize: '13px', color: 'var(--color-text-secondary)' }}>Ver todas as minutas →</Link>
                 </div>
               )}
             </div>

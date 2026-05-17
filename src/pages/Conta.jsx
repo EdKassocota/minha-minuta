@@ -12,7 +12,7 @@ export default function Conta() {
         </div>
       </div>
 
-      <div style={{ display: 'flex', borderBottom: '1px solid var(--color-border)', marginBottom: '32px' }}>
+      <div className="mobile-hide" style={{ display: 'flex', borderBottom: '1px solid var(--color-border)', marginBottom: '32px' }}>
         {tabs.map(t => (
           <button 
             key={t}
@@ -31,9 +31,23 @@ export default function Conta() {
         ))}
       </div>
 
-      <div style={{ maxWidth: '800px' }}>
+      {/* Select Box para tabs no mobile */}
+      <div className="mobile-only" style={{ marginBottom: '24px' }}>
+        <select 
+          className="form-input" 
+          value={tab} 
+          onChange={(e) => setTab(e.target.value)}
+          style={{ height: '44px', fontWeight: 600 }}
+        >
+          {tabs.map(t => (
+            <option key={t} value={t}>{t}</option>
+          ))}
+        </select>
+      </div>
+
+      <div style={{ maxWidth: '800px', width: '100%' }}>
         {tab === 'Perfil' && (
-          <div className="panel">
+          <div className="panel" style={{ width: '100%' }}>
             <h2 className="text-subtitle" style={{ marginBottom: '24px' }}>Informações Pessoais</h2>
             <form>
               <div className="form-group">
@@ -58,8 +72,8 @@ export default function Conta() {
 
         {tab === 'Plano e Faturação' && (
           <>
-            <div className="panel" style={{ marginBottom: '32px' }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '24px' }}>
+            <div className="panel" style={{ marginBottom: '32px', width: '100%' }}>
+              <div className="mobile-col" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '24px', gap: '16px' }}>
                 <div>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '8px' }}>
                     <h2 className="text-subtitle">Plano actual:</h2>
@@ -68,7 +82,7 @@ export default function Conta() {
                   <p className="text-support" style={{ marginBottom: '4px' }}>Renovação: 14 de Junho de 2025</p>
                   <p className="text-support">Minutas usadas: 34 / Ilimitado</p>
                 </div>
-                <div style={{ display: 'flex', gap: '12px' }}>
+                <div className="mobile-col" style={{ display: 'flex', gap: '12px' }}>
                   <button className="btn btn-secondary">Cancelar subscrição</button>
                   <button className="btn btn-primary">Mudar plano</button>
                 </div>
@@ -109,7 +123,7 @@ export default function Conta() {
         )}
 
         {tab === 'Segurança' && (
-          <div className="panel">
+          <div className="panel" style={{ width: '100%' }}>
             <h2 className="text-subtitle" style={{ marginBottom: '24px' }}>Alterar Password</h2>
             <form>
               <div className="form-group">
@@ -128,8 +142,8 @@ export default function Conta() {
         )}
 
         {tab === 'Equipa' && (
-          <>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
+          <div style={{ width: '100%' }}>
+            <div className="mobile-col" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '16px', gap: '16px' }}>
               <h2 className="text-subtitle">Membros da Equipa</h2>
               <button className="btn btn-primary">Convidar utilizador</button>
             </div>
@@ -173,7 +187,7 @@ export default function Conta() {
                 </tbody>
               </table>
             </div>
-          </>
+          </div>
         )}
       </div>
     </div>

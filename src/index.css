@@ -291,6 +291,8 @@ td.main-cell {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 16px;
 }
 
 /* Card / Panel */
@@ -422,7 +424,7 @@ td.main-cell {
   
   /* Metrics Grid */
   .metrics-grid {
-    grid-template-columns: 1fr 1fr !important;
+    grid-template-columns: 1fr !important;
   }
   
   /* Modals */
@@ -435,4 +437,31 @@ td.main-cell {
     padding: 16px !important;
   }
 }
+
+/* Estilos para Imagens Interactivas no Editor */
+.editor-content img {
+  max-width: 100%;
+  height: auto;
+  cursor: pointer;
+  display: inline-block;
+  margin: 8px 0;
+  transition: all 0.2s ease;
+}
+
+.editor-content img:hover {
+  outline: 3px dashed var(--color-primary);
+  box-shadow: 0 0 10px rgba(52, 100, 154, 0.3);
+}
+
+.editor-content img:focus {
+  outline: 3px solid var(--color-primary-hover);
+}
+
+/* Placeholder para editor contentEditable */
+[contenteditable][data-placeholder]:empty:before {
+  content: attr(data-placeholder);
+  color: var(--color-text-placeholder);
+  pointer-events: none;
+}
+
 
