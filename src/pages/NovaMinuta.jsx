@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import mammoth from 'mammoth';
 import { supabase } from '../lib/supabase';
 import { useAuth } from '../lib/AuthContext';
+import { Edit3, FileUp } from 'lucide-react';
 
 export default function NovaMinuta() {
   const navigate = useNavigate();
@@ -342,24 +343,24 @@ export default function NovaMinuta() {
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px' }}>
           <div 
             className="panel" 
-            style={{ textAlign: 'center', cursor: 'pointer', transition: 'all 0.2s', padding: '32px 24px', borderRadius: '2px' }}
+            style={{ textAlign: 'center', cursor: 'pointer', transition: 'all 0.2s', padding: '32px 24px', borderRadius: '2px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}
             onClick={() => { setSourceType('editor'); setStep(2); }}
             onMouseOver={(e) => e.currentTarget.style.borderColor = 'var(--color-primary)'}
             onMouseOut={(e) => e.currentTarget.style.borderColor = 'var(--color-border)'}
           >
-            <div style={{ fontSize: '24px', marginBottom: '12px' }}>✍️</div>
+            <Edit3 size={32} style={{ color: 'var(--color-primary)', marginBottom: '12px' }} />
             <div style={{ fontWeight: 600, fontSize: '15px', color: 'var(--color-text-primary)', marginBottom: '8px' }}>Escrever do zero</div>
             <p style={{ fontSize: '12px', color: 'var(--color-text-secondary)', lineHeight: '1.5' }}>Crie o seu documento diretamente no nosso editor integrado.</p>
           </div>
           <div 
             className="panel" 
-            style={{ textAlign: 'center', cursor: 'pointer', transition: 'all 0.2s', padding: '32px 24px', borderRadius: '2px' }}
+            style={{ textAlign: 'center', cursor: 'pointer', transition: 'all 0.2s', padding: '32px 24px', borderRadius: '2px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}
             onClick={() => { setSourceType('upload'); fileInputRef.current.click(); }}
             onMouseOver={(e) => e.currentTarget.style.borderColor = 'var(--color-primary)'}
             onMouseOut={(e) => e.currentTarget.style.borderColor = 'var(--color-border)'}
           >
-            <div style={{ fontSize: '24px', marginBottom: '12px' }}>📤</div>
-            <div style={{ fontWeight: 600, fontSize: '15px', color: 'var(--color-text-primary)', marginBottom: '8px' }}>Fazer upload de DOCX</div>
+            <FileUp size={32} style={{ color: 'var(--color-primary)', marginBottom: '12px' }} />
+            <div style={{ fontWeight: 600, fontSize: '15px', color: 'var(--color-text-primary)', marginBottom: '8px' }}>Carregar arquivo DOCX</div>
             <p style={{ fontSize: '12px', color: 'var(--color-text-secondary)', lineHeight: '1.5' }}>Importe um ficheiro .docx existente. A formatação original e imagens serão mantidas.</p>
           </div>
         </div>
@@ -409,7 +410,7 @@ export default function NovaMinuta() {
   );
 
   const renderStep3 = () => (
-    <div style={{ display: 'grid', gridTemplateColumns: '1fr 300px', gap: '24px', height: 'calc(100vh - 160px)', paddingBottom: '60px' }}>
+    <div className="step3-grid">
       
       {/* Editor & A4 Sheet Workspace */}
       <div style={{ display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
@@ -630,19 +631,19 @@ export default function NovaMinuta() {
       </div>
       
       {/* Footer Bar */}
-      <div style={{ position: 'fixed', bottom: 0, left: '220px', right: 0, height: '64px', backgroundColor: 'white', borderTop: '1px solid var(--color-border)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0 32px', zIndex: 50, boxShadow: '0 -2px 10px rgba(0,0,0,0.02)' }}>
-        <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
+      <div className="nova-minuta-footer">
+        <div style={{ display: 'flex', gap: '16px', alignItems: 'center', flexWrap: 'wrap' }}>
           <input 
             type="text" 
             className="form-input" 
             placeholder="Nome da minuta (ex: Contrato de Trabalho)..." 
             value={minutaName}
             onChange={(e) => setMinutaName(e.target.value)}
-            style={{ width: '300px', borderRadius: '2px' }}
+            style={{ width: '100%', maxWidth: '300px', borderRadius: '2px' }}
           />
           <select 
             className="form-input" 
-            style={{ width: '200px', borderRadius: '2px' }}
+            style={{ width: '100%', maxWidth: '200px', borderRadius: '2px' }}
             value={selectedFolder || ''}
             onChange={(e) => setSelectedFolder(e.target.value)}
           >
@@ -698,8 +699,8 @@ export default function NovaMinuta() {
   );
 
   return (
-    <div className="main-content" style={{ padding: step === 3 ? '0' : '32px' }}>
-      <div className="page-header" style={{ padding: step === 3 ? '24px 32px' : '0 0 32px 0', borderBottom: step === 3 ? '1px solid var(--color-border)' : 'none' }}>
+    <div className={`main-content ${step === 3 ? 'step-3-layout' : ''}`}>
+      <div className={`page-header nova-minuta-header ${step === 3 ? 'step3' : ''}`}>
         <div>
           <h1 className="text-display">Criar Minuta</h1>
         </div>

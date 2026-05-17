@@ -30,7 +30,8 @@ export default function AppLayout() {
   const navItems = [
     { to: '/app', icon: <Grid size={16} />, label: 'Dashboard' },
     { to: '/app/nova-minuta', icon: <FilePlus size={16} />, label: 'Nova Minuta' },
-    { to: '/app/templates', icon: <BookTemplate size={16} />, label: 'Templates' },
+    { to: '/app/templates?tab=user', icon: <FileText size={16} />, label: 'Minhas Minutas' },
+    { to: '/app/templates?tab=system', icon: <BookTemplate size={16} />, label: 'Templates' },
     { to: '/app/conta', icon: <User size={16} />, label: 'Conta e Planos' },
   ];
 
@@ -61,7 +62,11 @@ export default function AppLayout() {
           <div style={{ padding: '0 16px', marginBottom: '8px', fontSize: '11px', color: 'var(--color-text-placeholder)', textTransform: 'uppercase', fontWeight: 600 }}>Menu</div>
           
           {navItems.map((item) => {
-            const isActive = location.pathname === item.to || (item.to !== '/app' && location.pathname.startsWith(item.to));
+            const itemPath = item.to.split('?')[0];
+            const itemTab = new URLSearchParams(item.to.split('?')[1] || '').get('tab');
+            const currentTab = new URLSearchParams(location.search).get('tab') || 'system';
+            
+            const isActive = location.pathname === itemPath && (itemPath === '/app/templates' ? currentTab === itemTab : true);
             return (
               <Link 
                 key={item.to}
